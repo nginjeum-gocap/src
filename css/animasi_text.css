@@ -1,0 +1,150 @@
+/* ==========================================
+   ANIMASI TEXT FINAL (V10): PREMIUM NYANTAI
+   DURASI TOTAL SLOW-MOTION 14 DETIK
+   ========================================== */
+
+.name-container {
+    position: relative;
+    display: inline-block;
+    padding: 10px 25px;
+    margin-bottom: 5px;
+    border-radius: 8px;
+    
+    /* Diperlambat menjadi 14 detik biar super nyantai */
+    animation: boxFinalTimeline 14s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    opacity: 0;
+    
+    background-color: transparent;
+    border: 1px solid transparent;
+    
+    background-size: 400% 100%;
+    background-repeat: no-repeat;
+}
+
+.name {
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    display: block;
+    
+    /* Sinkron penuh 14 detik dengan kontainer luar */
+    animation: textHologramTimeline 14s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+/* -----------------------------------------------------------------
+   1. TIMELINE BORDER & LAMPU PELANGI (DURASI SANTAI 14 DETIK)
+   ----------------------------------------------------------------- */
+@keyframes boxFinalTimeline {
+    /* MUNCUL DARI BAWAH (0s - 2.1s) */
+    0% { opacity: 0; transform: translateY(20px); filter: blur(5px); background-image: none; box-shadow: none; }
+    15% { opacity: 1; transform: translateY(0); filter: blur(0); background-image: none; box-shadow: none; }
+
+    /* FASE 1: KILATAN SILVER MELINTAS NYANTAI (2.8s - 6.3s) */
+    20% {
+        background-position: 0% 50%;
+        background-image: linear-gradient(to right, transparent 0%, transparent 30%, rgba(255,255,255,0.1) 40%, rgba(255,255,255,0.95) 45%, rgba(255,255,255,0.1) 50%, transparent 60%, transparent 100%);
+    }
+    45% {
+        background-position: 100% 50%;
+        background-image: linear-gradient(to right, transparent 0%, transparent 30%, rgba(255,255,255,0.1) 40%, rgba(255,255,255,0.95) 45%, rgba(255,255,255,0.1) 50%, transparent 60%, transparent 100%);
+        border-color: transparent;
+        box-shadow: none;
+    }
+
+    /* FASE 2: EFEK PELANGI & LAMPU MELINTAS SUPER TENANG (7.2s - 11.2s) */
+    52% {
+        background-position: 0% 50%;
+        background-image: linear-gradient(to right, transparent 0%, rgba(255,0,85,0.15) 30%, rgba(255,204,0,0.15) 40%, rgba(0,255,102,0.15) 50%, rgba(0,153,255,0.15) 60%, rgba(204,0,255,0.15) 70%, transparent 100%);
+        border-color: #ff0055;
+        box-shadow: 0 0 25px rgba(255, 0, 85, 0.5), inset 0 0 15px rgba(255, 0, 85, 0.2);
+    }
+    58% {
+        border-color: #ffcc00;
+        box-shadow: 0 0 30px rgba(255, 204, 0, 0.5), inset 0 0 15px rgba(0, 255, 102, 0.2);
+    }
+    64% {
+        border-color: #00ff66;
+        box-shadow: 0 0 30px rgba(0, 255, 102, 0.6), inset 0 0 20px rgba(0, 153, 255, 0.3);
+    }
+    72% {
+        border-color: #0099ff;
+        box-shadow: 0 0 25px rgba(0, 153, 255, 0.5), inset 0 0 15px rgba(204, 0, 255, 0.2);
+    }
+    80% {
+        background-position: 100% 50%;
+        background-image: linear-gradient(to right, transparent 0%, rgba(255,0,85,0.15) 30%, rgba(255,204,0,0.15) 40%, rgba(0,255,102,0.15) 50%, rgba(0,153,255,0.15) 60%, rgba(204,0,255,0.15) 70%, transparent 100%);
+        border-color: #cc00ff;
+        box-shadow: 0 0 25px rgba(204, 0, 255, 0.5), inset 0 0 15px rgba(255, 0, 85, 0.2);
+    }
+
+    /* AKHIR ANIMASI: MEREDUP HILANG PERLAHAN (12.3s - 14s) */
+    88% { opacity: 1; transform: translateY(0); filter: blur(0); background-image: none; border-color: transparent; box-shadow: none; }
+    100% { opacity: 0; transform: translateY(-20px); filter: blur(5px); background-image: none; box-shadow: none; }
+}
+
+/* -----------------------------------------------------------------
+   2. TIMELINE TEKS NAMA (HOLOGRAM SPEKTRUM NYANTAI)
+   ----------------------------------------------------------------- */
+@keyframes textHologramTimeline {
+    0%, 45% {
+        -webkit-text-fill-color: #ffffff;
+        background-image: none;
+        filter: none;
+        text-shadow: none;
+    }
+
+    /* KEDIPAN HOLOGRAM IKUT MELAMBAT NYANTAI */
+    52% {
+        -webkit-text-fill-color: transparent;
+        background-image: linear-gradient(to right, #ff0055, #ff5500);
+        filter: drop-shadow(0 0 8px rgba(255, 0, 85, 0.8)) contrast(200%);
+        text-shadow: 1px 1px 0px #000;
+        letter-spacing: 1px;
+    }
+    58% {
+        -webkit-text-fill-color: transparent;
+        background-image: linear-gradient(to right, #ffcc00, #00ff66);
+        filter: drop-shadow(0 0 10px rgba(255, 204, 0, 0.8)) contrast(200%);
+        text-shadow: 1px 1px 0px #000;
+        letter-spacing: 1.2px;
+    }
+    64% {
+        -webkit-text-fill-color: transparent;
+        background-image: linear-gradient(to right, #00ff66, #0099ff);
+        filter: drop-shadow(0 0 12px rgba(0, 255, 102, 0.9)) contrast(200%);
+        text-shadow: 1px 1px 0px #000;
+        letter-spacing: 1.5px;
+    }
+    72% {
+        -webkit-text-fill-color: transparent;
+        background-image: linear-gradient(to right, #0099ff, #cc00ff);
+        filter: drop-shadow(0 0 10px rgba(0, 153, 255, 0.8)) contrast(200%);
+        text-shadow: 1px 1px 0px #000;
+        letter-spacing: 1.2px;
+    }
+    80% {
+        -webkit-text-fill-color: transparent;
+        background-image: linear-gradient(to right, #cc00ff, #ff0055);
+        filter: drop-shadow(0 0 8px rgba(204, 0, 255, 0.8)) contrast(200%);
+        text-shadow: 1px 1px 0px #000;
+        letter-spacing: 1px;
+    }
+
+    /* KEMBALI NORMAL & MEREDUP */
+    88% {
+        -webkit-text-fill-color: #ffffff;
+        background-image: none;
+        filter: none;
+        text-shadow: none;
+        letter-spacing: 0.5px;
+    }
+    100% {
+        -webkit-text-fill-color: #ffffff;
+        background-image: none;
+        filter: none;
+        text-shadow: none;
+    }
+}

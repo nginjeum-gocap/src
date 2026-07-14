@@ -1,0 +1,93 @@
+/* ==========================================
+   FILE: css/Subjudul.css (FIXED BARIS)
+   ========================================== */
+
+.software-engineer {
+    display: flex !important; /* Paksa pake flexbox */
+    flex-direction: row !important; /* Paksa sejajar menyamping kiri-kanan */
+    align-items: center;
+    justify-content: center;
+    
+    animation: subjudulTimeline 14s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    opacity: 0;
+    
+    font-size: 0.95rem;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    margin-top: 8px;
+    height: 30px;
+    width: 100%; /* Pastikan area box-nya luas */
+    white-space: nowrap; /* Teks dilarang keras turun ke bawah */
+}
+
+.sub-wing {
+    display: inline-block;
+    overflow: hidden; 
+    white-space: nowrap;
+    width: 0%; 
+    transition: color 0.3s ease;
+    box-sizing: border-box;
+}
+
+/* Sayap Kiri (Teks mepet kanan inside, border di kiri | ) */
+.wing-left {
+    text-align: right;
+    border-left: 2px solid #ffffff; 
+    animation: leftWingTimeline 14s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+/* Sayap Kanan (Teks mepet kiri inside, border di kanan | ) */
+.wing-right {
+    text-align: left;
+    border-right: 2px solid #ffffff; 
+    animation: rightWingTimeline 14s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+/* -----------------------------------------------------------------
+   1. TIMELINE UTAMA (SINKRON DENGAN NAMA)
+   ----------------------------------------------------------------- */
+@keyframes subjudulTimeline {
+    0% { opacity: 0; transform: translateY(10px); filter: blur(3px); }
+    10% { opacity: 1; transform: translateY(0); filter: blur(0); }
+    20%, 48% { opacity: 1; filter: none; transform: scale(1); }
+    52% { filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.7)); transform: scale(1.02); }
+    58% { filter: none; transform: scale(1); }
+    64% { filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.8)); transform: scale(1.02); }
+    72%, 80% { filter: none; transform: scale(1); }
+    88% { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0; transform: translateY(10px); filter: blur(3px); }
+}
+
+/* -----------------------------------------------------------------
+   2. TIMELINE SAYAP KIRI (PENGATURAN LEBAR MAKSIMAL 50%)
+   ----------------------------------------------------------------- */
+@keyframes leftWingTimeline {
+    0%, 10% { width: 0%; padding-right: 0px; border-color: #ffffff; }
+    /* Pakai 50% biar adil bagi dua ruang kiri kanan */
+    15%, 84% { width: 50%; padding-right: 6px; border-color: rgba(255,255,255,0.8); }
+    
+    52% { border-color: #00ff66; color: #00ff66; }
+    64% { border-color: #ff0055; color: #ff0055; }
+    76% { border-color: #0099ff; color: #0099ff; }
+    80% { border-color: #ffffff; color: #ffffff; }
+
+    /* Gulung balik */
+    88%, 100% { width: 0%; padding-right: 0px; border-color: #ffffff; }
+}
+
+/* -----------------------------------------------------------------
+   3. TIMELINE SAYAP KANAN (PENGATURAN LEBAR MAKSIMAL 50%)
+   ----------------------------------------------------------------- */
+@keyframes rightWingTimeline {
+    0%, 10% { width: 0%; padding-left: 0px; border-color: #ffffff; }
+    /* Pakai 50% biar adil bagi dua ruang kiri kanan */
+    15%, 84% { width: 50%; padding-left: 6px; border-color: rgba(255,255,255,0.8); }
+    
+    52% { border-color: #ff0055; color: #ff0055; }
+    64% { border-color: #00ff66; color: #00ff66; }
+    76% { border-color: #cc00ff; color: #cc00ff; }
+    80% { border-color: #ffffff; color: #ffffff; }
+
+    /* Gulung balik */
+    88%, 100% { width: 0%; padding-left: 0px; border-color: #ffffff; }
+}

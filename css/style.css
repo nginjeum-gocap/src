@@ -1,0 +1,251 @@
+/* ==========================================
+   1. RESET DASAR & HIERARKI HALAMAN
+   ========================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #000000;
+    color: #ffffff;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Canvas Latar Belakang (Partikel) */
+#particleCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Container Utama Konten */
+.container {
+    width: 100%;
+    max-width: 480px;
+    padding: 40px 20px;
+    text-align: center;
+    z-index: 2;
+    position: relative;
+}
+
+/* ==========================================
+   2. RACIKAN BARU: EFEK PROFIL 3D FLIP (KOIN)
+   ========================================== */
+.profile-card-container {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 25px auto;
+    perspective: 1000px; /* Memberikan efek kedalaman 3D */
+    cursor: pointer;
+    position: relative;
+}
+
+/* Kartu yang Bakal Berputar */
+.profile-card {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Pemicu Berputar (Dari JS otomatis atau manual saat di-hover) */
+.profile-card:hover,
+.profile-card.flipped {
+    transform: rotateY(180deg); /* Muter dari kiri ke kanan */
+}
+
+/* Sifat Sisi Depan & Belakang (Wajib Numpuk Posisi Absolute) */
+.profile-face {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden; /* Sisi belakang ngumpet pas dibalik */
+    border-radius: 50%;
+    border: 3px solid rgba(255, 255, 255, 0.2);
+    overflow: hidden;
+    background: #111;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 20px rgba(0, 255, 102, 0.2);
+}
+
+.profile-face img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Sisi Depan (Avatar) */
+.profile-front {
+    z-index: 2;
+    transform: rotateY(0deg);
+}
+
+/* Sisi Belakang (Logo) */
+.profile-back {
+    z-index: 1;
+    transform: rotateY(180deg);
+    border-color: #00ffff; /* Border jadi hijau neon saat nampilin logo */
+}
+
+.profile-placeholder {
+    position: absolute;
+    font-size: 2.5rem;
+    color: #555;
+    z-index: 1;
+}
+
+/* ==========================================
+   3. TEKS, ICON SOSIAL MEDIA, & TOMBOL LINK
+   ========================================== */
+.name {
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    margin-bottom: 5px;
+}
+
+.tagline {
+    font-size: 0.9rem;
+    color: #ccc;
+    margin-bottom: 25px;
+}
+
+/* Icon Sosial Media Mini */
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 35px;
+}
+
+.social-icons a {
+    color: #ffffff;
+    font-size: 1.4rem;
+    text-decoration: none;
+    transition: transform 0.3s, color 0.3s;
+}
+
+.social-icons a:hover {
+    transform: scale(1.2);
+    color: #00ff66; /* Menyala hijau saat disentuh */
+}
+
+/* Pembungkus Daftar Tombol */
+.links-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.btn-link i {
+    margin-right: 10px; /* Memberi jeda spasi antara ikon dan teks tombol */
+    font-size: 1.1rem;  /* Menyeimbangkan ukuran ikon di dalam tombol */
+    vertical-align: middle;
+}
+
+/* Tombol Kapsul */
+.btn-link {
+    display: block;
+    width: 100%;
+    padding: 16px 20px;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 0.95rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 50px; 
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+}
+
+.btn-link:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: #00ff66;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
+}
+
+/* ==========================================
+   SHORTCUT GLOBAL SCALE DOWN DI HP (RESPONSIF)
+   ========================================== */
+
+@media screen and (max-width: 480px) {
+    .container {
+        /* KUNCI UTAMA: Mengecilkan seluruh isi web secara proporsional */
+        transform: scale(0.85) !important; /* Coba 0.85 dulu, kalau kurang kecil ganti ke 0.8 */
+        
+        /* Titik poros skala disetel di tengah atas biar gak geser berantakan */
+        transform-origin: top center !important; 
+        
+        width: 100% !important;
+        max-width: 400px !important;
+        margin: 0 auto !important;
+        box-sizing: border-box !important;
+    }
+}
+
+/* ==========================================
+   EFEK GELEMBUNG KLIK (NEON RIPPLE)
+   ========================================== */
+.click-bubble {
+    position: fixed; /* Fixed biar posisinya ngikutin layar, bukan halaman */
+    border-radius: 50%;
+    /* Warna gelembung neon cyan/hijau, bisa lu ganti sesuai selera */
+    border: 2px solid rgba(0, 255, 102, 0.8);
+    box-shadow: 0 0 10px rgba(0, 255, 102, 0.5);
+    
+    /* Ukuran awal sebelum mekar */
+    width: 20px;
+    height: 20px;
+    
+    /* Titik tengah presisi */
+    transform: translate(-50%, -50%) scale(0);
+    
+    /* Biar gelembungnya tembus pandang & ga ngeblokir tombol saat diklik */
+    pointer-events: none; 
+    z-index: 9999;
+    
+    /* Animasi meledak selama 0.6 detik */
+    animation: bubblePop 0.9s ease-out forwards;
+}
+
+@keyframes bubblePop {
+    0% {
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(6); /* Mekar 4x lipat */
+        opacity: 0; /* Hilang */
+    }
+}
+
+/* ==========================================
+   BACKGROUND CANVAS (MATRIX RAIN)
+   ========================================== */
+#particleCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1; /* Wajib -1 biar diam di background */
+    background-color: #000000; /* Warna dasar hitam pekat */
+}
